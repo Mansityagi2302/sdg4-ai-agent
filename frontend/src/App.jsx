@@ -21,8 +21,10 @@ function App() {
     formData.append('file', file);
     
     try {
-      // 1. URL MATCH: Using localhost to match your working browser test
-      const response = await fetch('http://localhost:8000/upload-textbook', {
+      // Use the environment variable if it exists, otherwise use your Render link
+      const baseUrl = import.meta.env.VITE_API_URL || 'https://sdg4-ai-agent.onrender.com';
+      
+      const response = await fetch(`${baseUrl}/upload-textbook`, {
         method: 'POST',
         body: formData,
       });
